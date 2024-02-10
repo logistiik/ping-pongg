@@ -1,7 +1,7 @@
 from pygame import *
 win_width = 700
 win_height = 500
-window = display.setmode((win_width, win_height))
+window = display.set_mode((win_width, win_height))
 
 FPS  = 60
 game = True
@@ -18,18 +18,21 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image,(self.rect.x,self.rect.y))
         
 class Player(GameSprite):
-    def update(self):
-        keys_pressed = key.get_pressed()
-        if keys_pressed[K_LEFT] and self.rect.x>5:
-            self.rect.x-=self.speed
-        if keys_pressed[K_RIGHT] and self.rect.x<695:
-            self.rect.x+=self.speed
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_UP] and self.rect > 5:
+           self.speed -= self.speed 
     def update(self):
         keys = key.get_pressed()
-        if keys[K_w]
+        if keys[K_w] and self.rect > 5:
+            self.rect -= self.speed
+
+craket1 = Player('racket.png',30,270,50,150,3)
+#craket2 = Player('racket.png',)
 
 while game:
- for i in event.get():
-     if i.type == QUIT:
-         game = False
-
+    display.update()
+    clock.tick(60)
+    for i in event.get():
+        if e.type == QUIT:
+            game = False
